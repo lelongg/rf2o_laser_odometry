@@ -226,7 +226,7 @@ void CLaserOdometry2DNode::publish()
     odom_trans.transform.translation.x = robot_pose_.translation()(0);
     odom_trans.transform.translation.y = robot_pose_.translation()(1);
     odom_trans.transform.translation.z = 0.0;
-    odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(rf2o::getYaw(robot_pose_.rotation()));
+    odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(-rf2o::getYaw(robot_pose_.rotation()));
     //send the transform
     odom_broadcaster.sendTransform(odom_trans);
   }
@@ -241,7 +241,7 @@ void CLaserOdometry2DNode::publish()
   odom.pose.pose.position.x = robot_pose_.translation()(0);
   odom.pose.pose.position.y = robot_pose_.translation()(1);
   odom.pose.pose.position.z = 0.0;
-  odom.pose.pose.orientation = tf::createQuaternionMsgFromYaw(rf2o::getYaw(robot_pose_.rotation()));
+  odom.pose.pose.orientation = tf::createQuaternionMsgFromYaw(-rf2o::getYaw(robot_pose_.rotation()));
   //set the velocity
   odom.child_frame_id = base_frame_id;
   odom.twist.twist.linear.x = lin_speed;    //linear speed
